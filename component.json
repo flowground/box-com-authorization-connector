@@ -1,0 +1,51 @@
+{
+    "title": "Box 2.0 Authorization",
+    "description": "The Box Authorization API gives you access to authenticate and authorize an application to work with the Box APIs",
+    "docsUrl": "",
+    "url": "https://api.apis.guru/v2/specs/box.com/authorization/2.0/swagger.json",
+    "envVars": {},
+    "credentials": {
+        "fields": {
+            "server": {
+                "label": "Server",
+                "viewClass": "SelectView",
+                "model": [
+                    "https://account.box.com/api/oauth2",
+                    "--- Custom URL"
+                ],
+                "required": true
+            },
+            "otherServer": {
+                "label": "Custom Server URL",
+                "viewClass": "TextFieldView"
+            }
+        }
+    },
+    "triggers": {
+        "startFlow": {
+            "main": "./lib/triggers/startFlow.js",
+            "type": "polling",
+            "title": "Start Flow",
+            "fields": {}
+        }
+    },
+    "actions": {
+        "authorize": {
+            "main": "./lib/actions/authorize.js",
+            "title": "Authorize",
+            "description": "The host for this api is account.box.com. This is the URL of the Box login endpoint. To begin the process of authenticating and authorizing an application to work with the Box APIs.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/authorize.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        }
+    }
+}
